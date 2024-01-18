@@ -16,68 +16,58 @@ GitHub CodespacesとVisual Studio Codeを使用してコーディングしまし
 </header>
 
 <!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
+  <<< Author notes: Step 2 >>>
+  Start this step by acknowledging the previous step.
+  Define terms and link to docs.github.com.
 -->
 
-## ステップ1: 最初のcodespaceを作成しコードをプッシュする
+## ステップ2: あなたのcodespaceにカスタムイメージを追加しましょう！
 
-**ようこそ！**
+_素晴らしい仕事です！ 🎉 VS Codeを使用して最初のcodespaceを作成し、コードをプッシュしました！_
 
-**ソフトウェア開発にcodespaceを使用することの大きな利点は？** Codespaceはクラウドでホストされる開発環境です。リポジトリに設定ファイルをコミットすることでGitHub Codespaces用のプロジェクトをカスタマイズできます（configuration-as-codeとも呼ばれます）。これにより、プロジェクトのすべてのユーザーに対して繰り返し可能なcodespaceの設定が作成されます。作成するcodespaceは、GitHubによって仮想マシン上で実行されるDockerコンテナーでホストされます。必要なリソースに応じて使用するマシンのタイプを選択できます。
+リポジトリのdev containerを設定することで、そのリポジトリ用に作成されたどのcodespaceでも、特定のプロジェクトに取り組むために必要なすべてのツールとランタイムを備えたカスタマイズされた開発環境を提供することができます。
 
-GitHubは、開発チームがcodespaceをカスタマイズし、最適な構成とパフォーマンスを実現するための幅広い機能を提供しています。例えば、以下のことができます:
+**dev containerとは何ですか？** dev containerは、完全な機能を備えた開発環境を提供するために特別に設定されたDockerコンテナです。codespaceで作業する際は常に、仮想マシン上のdev containerを使用しています。
 
-- リポジトリからcodespaceを作成する。
-- codespaceからリポジトリへコードをプッシュする。
-- VS Codeを使用してコードを開発する。
-- カスタムイメージでcodespaceをカスタマイズする。
-- codespaceを管理する。
+dev containerファイルは、codespaceを実行するデフォルトイメージをカスタマイズしたり、VS Codeの設定を行ったり、カスタムコードを実行したり、ポートを転送したりするためのJSONファイルです！
 
-GitHub Codespacesを使用して開発を始めるには、テンプレートまたはリポジトリ内の任意のブランチまたはコミットからcodespaceを作成できます。テンプレートからcodespaceを作成する場合、空のテンプレートから始めるか、行っている作業に適したテンプレートを選択できます。
+`devcontainer.json`ファイルを追加してカスタムイメージを設定しましょう。
 
-### :keyboard: アクティビティ: codespaceを開始する
+### :keyboard: アクティビティ: devcontainer.jsonファイルを追加してcodespaceをカスタマイズする
 
-**以下のアクティビティを進めるために別のブラウザタブを開くことをお勧めします。そうすることで、これらの指示を参照用に開いたままにしておけます。**
+1. リポジトリの**Code**タブに戻り、**Add file**ドロップダウンボタンをクリックし、`Create new file`をクリックします。
+1. 空のテキストフィールドプロンプトに次の内容をタイプまたは貼り付けてファイルに名前を付けます。
 
-1. リポジトリのトップページから始めます。
+   ```
+   .devcontainer/devcontainer.json
+   ```
+
+1. 新しい **.devcontainer/devcontainer.json** ファイルの本文に、次の内容を追加します：
+
+   ```jsonc
+   {
+   // この設定に名前を付ける
+   "name": "はじめてのCodespace！",
+   // ベースのcodespaceイメージを使用する
+   "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+
+   "remoteUser": "codespace",
+   "overrideCommand": false
+   }
+   ```
+
+1. **Commit changes**をクリックし、その後**Commit changes directly to the `main` branch**を選択します。
+1. リポジトリの**Code**タブに戻り、新しいcodespaceを作成します。
 1. ページの中央にある緑色の**Code**ボタンをクリックします。
-1. ポップアップされるボックス内で**Codespaces**タブを選択し、次に**Create codespace on main**ボタンをクリックします。
+1. ポップアップされるボックスの**Codespaces**タブをクリックします。
+1. タブ上の`+`記号をクリックします。これにより、mainブランチ上に新しいcodespaceが作成されます。（ここに他のcodespaceがリストされていることに注意してください。）
 
-   > codespaceが起動されるまで約2分待ちます。
-   > **注意**: 仮想マシンを起動しています。
+   > codespaceが起動されるまで約2分間待ちます。
 
-1. codespaceが実行されていることを確認します。ブラウザにはVS Codeのウェブベースエディターが表示され、以下のようなターミナルが存在するはずです:
-   ![codespace1](https://user-images.githubusercontent.com/26442605/207355196-71aab43f-35a9-495b-bcfe-bf3773c2f1b3.png)
+1. 前回と同様に、新しいcodespaceが実行されていることを確認します。
 
-### :keyboard: アクティビティ: codespaceからリポジトリにコードをプッシュする
+   使用されているイメージがGitHub Codespaces用に提供されているデフォルトイメージであることに注意してください。これにはPython、Node.js、Dockerなどのランタイムとツールが含まれています。完全なリストはこちらを参照：https://aka.ms/ghcs-default-image。 開発チームは、必要な前提条件がインストールされている任意のカスタムイメージを使用できます。詳細については、[codespace image](https://aka.ms/configure-codespace)を参照してください。
 
-1. VS Codeのエクスプローラウィンドウ内のcodespaceから、`index.html`ファイルを選択します。
-1. 以下の内容で**h1**ヘッダーを置き換えます：
-
-   ```html
-   <h1>Hello from the codespace!</h1>
-   ```
-
-1. ファイルを保存します。
-   > **注意**: ファイルは自動保存されます。
-1. VS Codeのターミナルを使用して、以下のコミットメッセージを入力してファイルの変更をコミットします：
-
-   ```shell
-   git commit -a -m "Adding hello from the codespace!"
-   ```
-
-1. リポジトリに変更をプッシュします。VS Codeのターミナルで、次を入力します：
-
-   ```shell
-   git push
-   ```
-
-1. あなたのコードはリポジトリにプッシュされました！
-1. リポジトリのホームページに戻り、`index.html`を表示して、新しいコードがリポジトリにプッシュされたことを確認します。
 1. 約20秒待ってからこのページをリフレッシュします。そうすると、[GitHub Actions](https://docs.github.com/en/actions)によってREADMEの内容が次の指示に置き換えます。
 
 <footer>
