@@ -16,86 +16,38 @@ GitHub CodespacesとVisual Studio Codeを使用してコーディングしまし
 </header>
 
 <!--
-  <<< Author notes: Step 4 >>>
-  Start this step by acknowledging the previous step.
-  Define terms and link to docs.github.com.
+  <<< Author notes: Finish >>>
+  Review what we learned, ask for feedback, provide next steps.
 -->
 
-## ステップ4: あなたのcodespaceをパーソナライズしましょう！
+## 完了
 
-_codespaceのカスタマイズ、お疲れさまでした！_ 🥳
+_おめでとうございます、このコースを修了しました！_
 
-どんな開発環境を使用する場合でも、設定やツールを自分の好みやワークフローに合わせてカスタマイズすることは重要なステップです。GitHub Codespacesでは、VS Codeの`Settings Sync`と`dotfiles`の2つの主要な方法でcodespaceをパーソナライズできます。
+<img src="https://octodex.github.com/images/welcometocat.png" alt=celebrate width=300 align=right>
 
-このアクティビティでは`dotfiles`に焦点を当てます。
+リポジトリで達成したすべてのタスクのまとめです：
 
-**`dotfiles`とは何ですか？** Dotfilesは、Unix系システムで.で始まるファイルやフォルダで、システム上のアプリケーションやシェルの設定を制御します。GitHub上のリポジトリにdotfilesを保存して管理することができます。
+- codespaceの作成方法とcodespaceからリポジトリへのコードプッシュ方法を学びました。
+- codespaceでカスタムイメージを使用する方法を学びました。
+- codespaceのカスタマイズ方法を学びました。
+- codespaceのパーソナライズ方法を学びました。
 
-これがどのように機能するか見てみましょう！
+### 追加の学習とリソース
 
-### :keyboard: アクティビティ: あなたのcodespaceに`dotfile`を有効にする
+- [codespaceでの開発](https://docs.github.com/ja/codespaces/developing-in-codespaces/developing-in-a-codespace)。codespaceの削除、既存のcodespaceの開き方、プライベートネットワークへの接続、ポートの転送などについて学びます。
+- [リポジトリのセットアップ](https://docs.github.com/ja/codespaces/setting-up-your-project-for-codespaces/introduction-to-dev-containers)。codespaceの最小マシン仕様の設定、バッジの追加、テンプレートリポジトリの設定などについて学びます。
+- [GitHub Codespacesのパーソナライズとカスタマイズ](https://docs.github.com/ja/codespaces/customizing-your-codespace/personalizing-github-codespaces-for-your-account)。codespaceの設定同期、dotfilesの追加、デフォルトリージョンの設定、デフォルトエディタの設定などについて学びます。
+- [codespaceの事前ビルド](https://docs.github.com/ja/codespaces/prebuilding-your-codespaces/about-github-codespaces-prebuilds)
+- [codespaceの管理](https://docs.github.com/ja/codespaces/managing-codespaces-for-your-organization/enabling-github-codespaces-for-your-organization)
 
-1. リポジトリのランディングページから始めます。
-1. github.com上の任意のページの右上隅にあるご自身のプロフィール写真をクリックし、**Settings**をクリックします。
-1. サイドバーの**Code, planning, and automation**セクションで、**Codespaces**をクリックします。
-1. **Dotfiles**の下で、**Automatically install dotfiles**を選択して、GitHub Codespacesが新しく作成されたすべてのcodespaceに自動的にdotfilesをインストールするようにします。
-1. **Select repository**をクリックし、その後dotfilesをインストールするリポジトリとして今回の研修で使用しているリポジトリを選択します。
+### 次に何をする？
 
-### :keyboard: アクティビティ: リポジトリに`dotfile`を追加し、codespaceを実行する
-
-1. リポジトリのトップページから始めます。
-1. ページの中央にある**Code**ボタンをクリックします。
-1. ポップアップされるボックスの**Codespaces**タブをクリックします。
-1. **Create codespace on main**ボタンをクリックします。
-
-   > codespaceが起動するまで約**2分**待ちます。
-
-1. 前回と同様に、codespaceが実行されていることを確認します。ブラウザにはVS Codeのウェブベースエディターが表示され、以下のようなターミナルが存在するはずです：
-
-   ![codespace1](https://user-images.githubusercontent.com/26442605/207355196-71aab43f-35a9-495b-bcfe-bf3773c2f1b3.png)
-
-1. VS Codeのエクスプローラウィンドウ内のcodespaceで新しいファイル `setup.sh` を作成します。
-1. 以下のコードをファイル内に追加します：
-
-   ```bash
-   #!/bin/bash
-
-   sudo apt-get update
-   sudo apt-get install sl
-   ```
-
-1. ファイルを保存します。
-   > **注**: ファイルは自動保存されるはずです。
-1. ファイルの変更をコミットします。VS Codeのターミナルで次を入力します：
-
-   ```shell
-   git add setup.sh --chmod=+x
-   git commit -m "Adding setup.sh from the codespace!"
-   ```
-
-
-1. リポジトリに変更をプッシュします。VS Codeのターミナルで次を入力します：
-
-
-   ```shell
-   git push
-   ```
-1. リポジトリのホームページに戻り、`setup.sh`を確認して新しいコードがリポジトリにプッシュされたことを確認します。
-1. codespaceのウェブブラウザタブを閉じます。
-1. タブ上の`+`記号をクリックします。
-
-   > codespaceが起動するまで約**2分**待ちます。
-
-1. 前回と同様に、codespaceが実行されていることを確認します。
-1. `setup.sh`ファイルがVS Codeエディターに存在することを確認します。
-1. VS Codeのターミナルで、次を入力または貼り付けます：
-
-   ```shell
-   /usr/games/sl
-   ```
-
-1. ショーを楽しんでください！
-1. このページ（指示に従っているページ）を約20秒待ってからリフレッシュします。[GitHub Actions](https://docs.github.com/en/actions)が自動的に次のステップに更新されます。
+- サプライチェーンのセキュリティについて学ぶために、[GitHub Codespaces概要](https://docs.github.com/ja/codespaces/overview)を読んでみてください。
+- [このコースについてのご意見をお聞かせください](https://github.com/orgs/skills/discussions/categories/code-with-codespaces)。
+- [別のGitHubスキルを学びます](https://github.com/skills)。
+- [GitHubドキュメントの入門ガイドを読む](https://docs.github.com/en/get-started)。
+- コントリビュートするプロジェクトを見つけるために、[GitHub Explore](https://github.com/explore)をチェックしてください。
 
 <footer>
 
