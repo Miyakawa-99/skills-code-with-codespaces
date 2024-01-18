@@ -16,78 +16,86 @@ GitHub CodespacesとVisual Studio Codeを使用してコーディングしまし
 </header>
 
 <!--
-  <<< Author notes: Step 3 >>>
+  <<< Author notes: Step 4 >>>
   Start this step by acknowledging the previous step.
   Define terms and link to docs.github.com.
 -->
 
-## ステップ3: あなたのcodespaceをカスタマイズしましょう！
+## ステップ4: あなたのcodespaceをパーソナライズしましょう！
 
-_素晴らしい仕事です！ 🎉 カスタムイメージを使用したcodespaceを作成しました！_
+_codespaceのカスタマイズ、お疲れさまでした！_ 🥳
 
-VS Codeの拡張機能の追加、機能の追加、ホスト要件の設定などによって、codespaceをカスタマイズできます。
+どんな開発環境を使用する場合でも、設定やツールを自分の好みやワークフローに合わせてカスタマイズすることは重要なステップです。GitHub Codespacesでは、VS Codeの`Settings Sync`と`dotfiles`の2つの主要な方法でcodespaceをパーソナライズできます。
 
-`devcontainer.json`ファイルの設定をカスタマイズしてみましょう！
+このアクティビティでは`dotfiles`に焦点を当てます。
 
-### :keyboard: アクティビティ: `devcontainer.json`ファイルにカスタマイズを追加する
+**`dotfiles`とは何ですか？** Dotfilesは、Unix系システムで.で始まるファイルやフォルダで、システム上のアプリケーションやシェルの設定を制御します。GitHub上のリポジトリにdotfilesを保存して管理することができます。
 
-1. `.devcontainer/devcontainer.json`ファイルに移動します。
-1. 最後の`}`の前に、ファイルの本文に以下のカスタマイズを追加します。
+これがどのように機能するか見てみましょう！
 
-   ```jsonc
-    ,
-    // コンテナが作成されたときにインストールしたい拡張機能のIDを追加します。
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "GitHub.copilot"
-            ]
-        },
-        "codespaces": {
-            "openFiles": [
-                "codespace.md"
-            ]
-        }
-    }
-   ```
+### :keyboard: アクティビティ: あなたのcodespaceに`dotfile`を有効にする
 
-1. **Commit changes**をクリックし、その後**Commit changes directly to the `main` branch**を選択します。
-1. リポジトリのトップページに移動して新しいcodespaceを作成します。
+1. リポジトリのランディングページから始めます。
+1. github.com上の任意のページの右上隅にあるご自身のプロフィール写真をクリックし、**Settings**をクリックします。
+1. サイドバーの**Code, planning, and automation**セクションで、**Codespaces**をクリックします。
+1. **Dotfiles**の下で、**Automatically install dotfiles**を選択して、GitHub Codespacesが新しく作成されたすべてのcodespaceに自動的にdotfilesをインストールするようにします。
+1. **Select repository**をクリックし、その後dotfilesをインストールするリポジトリとして今回の研修で使用しているリポジトリを選択します。
+
+### :keyboard: アクティビティ: リポジトリに`dotfile`を追加し、codespaceを実行する
+
+1. リポジトリのトップページから始めます。
 1. ページの中央にある**Code**ボタンをクリックします。
 1. ポップアップされるボックスの**Codespaces**タブをクリックします。
-1. タブ上の`+`記号をクリックします。
+1. **Create codespace on main**ボタンをクリックします。
 
-   > codespaceが起動されるまで約2分待ちます。
+   > codespaceが起動するまで約**2分**待ちます。
 
-1. 前回と同様に、codespaceが実行されていることを確認します。
-1. `codespace.md`ファイルがVS Codeエディターに表示されるはずです。
-1. `copilot`拡張機能がVS Codeの拡張機能リストに表示されるはずです。
+1. 前回と同様に、codespaceが実行されていることを確認します。ブラウザにはVS Codeのウェブベースエディターが表示され、以下のようなターミナルが存在するはずです：
 
-   これにより、VS Code拡張機能が追加され、codespaceの起動時にファイルが開かれます。
+   ![codespace1](https://user-images.githubusercontent.com/26442605/207355196-71aab43f-35a9-495b-bcfe-bf3773c2f1b3.png)
 
-次に、codespaceの作成時に実行するコードを追加しましょう！
+1. VS Codeのエクスプローラウィンドウ内のcodespaceで新しいファイル `setup.sh` を作成します。
+1. 以下のコードをファイル内に追加します：
 
-### :keyboard: アクティビティ: codespaceの作成時にコードを実行する
+   ```bash
+   #!/bin/bash
 
-1. ``.devcontainer/devcontainer.json`ファイルを編集します。
-1. 最後の`}`の前に、ファイルの本文に以下のpostCreateCommandを追加します。
-
-   ```jsonc
-    ,
-    "postCreateCommand": "echo '# Writing code upon codespace creation!'  >> codespace.md"
+   sudo apt-get update
+   sudo apt-get install sl
    ```
 
-1. **Commit changes**をクリックし、その後**Commit changes directly to the `main` branch**を選択します。
-1. リポジトリのトップページに移動して新しいcodespaceを作成します。
-1. ページの中央にある**Code**ボタンをクリックします。
-1. ポップアップされるボックスの**Codespaces**タブをクリックします。
+1. ファイルを保存します。
+   > **注**: ファイルは自動保存されるはずです。
+1. ファイルの変更をコミットします。VS Codeのターミナルで次を入力します：
+
+   ```shell
+   git add setup.sh --chmod=+x
+   git commit -m "Adding setup.sh from the codespace!"
+   ```
+
+
+1. リポジトリに変更をプッシュします。VS Codeのターミナルで次を入力します：
+
+
+   ```shell
+   git push
+   ```
+1. リポジトリのホームページに戻り、`setup.sh`を確認して新しいコードがリポジトリにプッシュされたことを確認します。
+1. codespaceのウェブブラウザタブを閉じます。
 1. タブ上の`+`記号をクリックします。
 
-   > codespaceが起動されるまで約2分待ちます。
+   > codespaceが起動するまで約**2分**待ちます。
 
 1. 前回と同様に、codespaceが実行されていることを確認します。
-1. `codespace.md`ファイルに`Writing code upon codespace creation!`というテキストが追加されていることを確認します。
-1. このページ（指示に従っているページ）を約20秒待ってからリフレッシュします。GitHub Actionsが自動的に次のステップに更新されます。
+1. `setup.sh`ファイルがVS Codeエディターに存在することを確認します。
+1. VS Codeのターミナルで、次を入力または貼り付けます：
+
+   ```shell
+   /usr/games/sl
+   ```
+
+1. ショーを楽しんでください！
+1. このページ（指示に従っているページ）を約20秒待ってからリフレッシュします。[GitHub Actions](https://docs.github.com/en/actions)が自動的に次のステップに更新されます。
 
 <footer>
 
