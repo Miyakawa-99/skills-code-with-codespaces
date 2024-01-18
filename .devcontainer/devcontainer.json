@@ -1,0 +1,9 @@
+{
+// この設定に名前を付ける
+"name": "はじめてのCodespace！",
+// ベースのcodespaceイメージを使用する
+"image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+
+"remoteUser": "codespace",
+"overrideCommand": false
+}
