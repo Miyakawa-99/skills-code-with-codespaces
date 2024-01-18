@@ -6,4 +6,17 @@
 
 "remoteUser": "codespace",
 "overrideCommand": false
-}
+ ,
+ // コンテナが作成されたときにインストールしたい拡張機能のIDを追加します。
+ "customizations": {
+     "vscode": {
+         "extensions": [
+             "GitHub.copilot"
+         ]
+     },
+     "codespaces": {
+         "openFiles": [
+             "codespace.md"
+         ]
+     }
+ }}
