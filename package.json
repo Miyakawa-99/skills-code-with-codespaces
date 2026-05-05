@@ -1,0 +1,20 @@
+{
+  "name": "court-watcher",
+  "version": "0.1.0",
+  "private": true,
+  "description": "都立公園テニスコートのキャンセル枠をLINEに通知するCloudflare Worker",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "typescript": "^5.5.0",
+    "wrangler": "^3.80.0"
+  },
+  "dependencies": {
+    "hono": "^4.6.0"
+  }
+}

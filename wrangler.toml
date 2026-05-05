@@ -1,0 +1,25 @@
+name = "court-watcher"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# JST 6:00–23:45 の間に 15 分おきにスキャン（深夜帯は除外）
+# UTC 21–23 = JST 6–8、UTC 0–14 = JST 9–23
+[triggers]
+crons = ["*/15 21-23,0-14 * * *"]
+
+# `wrangler kv:namespace create STATE` で発行された id を貼り付けてください
+[[kv_namespaces]]
+binding = "STATE"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# シークレットは `wrangler secret put <NAME>` で登録します
+# - LINE_CHANNEL_ACCESS_TOKEN
+# - LINE_CHANNEL_SECRET
+
+[vars]
+# 連絡先付きの User-Agent（運営者が問い合わせできるように）
+USER_AGENT = "court-watcher/0.1 (personal monitor; please contact via the GitHub repo if this is causing issues)"
+# 1リクエストあたりの間隔（ミリ秒）
+REQUEST_DELAY_MS = "2500"
+# 監視対象の最大未来日数（システム上、抽選確定〜先着の約60日が上限）
+SCAN_FUTURE_DAYS = "60"
